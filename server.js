@@ -1,18 +1,31 @@
 var express = require('express');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var mongoose = require('mongoose');
 
 var app = express();
 
-const port = 8080;
+// var db = require('./config/db');
 
-app.get('/*', function(req, res) {
-    res.send("Hello World");
-});
+// set our port
+var port = process.env.PORT || 8080;
 
-app.listen(port, 'localhost', (err) => {
-    if (err) {
-        console.log(err);
-        return;
-    }
+// mongoose.connect(db.url);
 
-    console.log('Listening at http://localhost:' + port);
-});
+// get all data/stuff of the body (POST) parameters
+// parse application/json
+app.use(bodyParser.json());
+app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride('X-HTTP-Method-Override'));
+
+// routes
+var routes = require('./app/routes');
+app.use('/', routes);
+
+//start app at localhost:8080
+app.listen(port);
+
+console.log('Listening on  port ' + port);
+
+exports = module.exports = app;
