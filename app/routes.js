@@ -7,7 +7,6 @@ var mongoose = require('mongoose');
 
 //REST routes
 router.get('/api/captions', function(req, res, next) {
-    console.log(req.body);
     res.send(Sentencer.make("This test contains {{ a_noun }} and {{ an_adjective }} {{ noun }} in it."));
 });
 
