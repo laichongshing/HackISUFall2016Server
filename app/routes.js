@@ -3,7 +3,6 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Sentencer = require('sentencer');
-var mongoose = require('mongoose');
 
 //REST routes
 router.get('/api/captions', function(req, res, next) {
