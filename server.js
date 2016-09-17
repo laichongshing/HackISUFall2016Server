@@ -5,13 +5,13 @@ var mongoose = require('mongoose');
 
 var app = express();
 
-var db = require('./config/db');
-
 // set our port
 var port = process.env.PORT || 8080;
 
-mongoose.connect(db.url);
-
+mongoose.connect(process.env.MONGOLAB_URI, function (error) {
+    if (error) console.error(error);
+    else console.log('mongo connected');
+});
 // get all data/stuff of the body (POST) parameters
 // parse application/json
 app.use(bodyParser.json());
