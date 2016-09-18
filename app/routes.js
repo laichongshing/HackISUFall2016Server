@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var sentencer = require('sentencer');
+var Sentencer = require('sentencer');
 var Clarifai = require('clarifai');
 var Meme = mongoose.model('Meme');
 var Tag = mongoose.model('Tag');
@@ -13,12 +13,11 @@ Clarifai.initialize({
     'clientSecret': 'ROlSYiTX_cTqW-lW2x7Tq7_Fq1OB2QboUKjlLtE7'
 });
 
-
 //REST routes
 router.get('/api/captions', function(req, res, next) {
     // res.send(sentencer.make("This test contains {{ a_noun }} and {{ an_adjective }} {{ noun }} in it."));
     if(!req) {
-        return res.status(400).json({message: 'Please '});
+        return res.status(400).json({message: 'Please fill stuff'});
     }
 
     var memes = Meme.find({}, function(err, memes) {
@@ -27,8 +26,12 @@ router.get('/api/captions', function(req, res, next) {
         } else {console.log(err);}
     });
 
-    var meme = memeMatch(req.results[0].result.tag.classes, req.results[0].result.tag.probs, memes);
+    var meme = memeMatch(req.tag.classes, tag.probs, memes);
     res.json(meme);
+
+    Sentencer.configure({
+        nounList: []
+    });
 });
 
 router.get('/api/dank/addMemes', function(req, res, next) {
