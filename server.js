@@ -12,7 +12,7 @@ require('./app/model/Tag');
 // set our port
 var port = process.env.PORT || 8080;
 
-mongoose.connect(process.env.MONGOLAB_URI, function (error) {
+mongoose.connect('mongodb://caption:caption@ds033056.mlab.com:33056/captiondb', function (error) {
     if (error) console.error(error);
     else console.log('mongo connected');
 });
