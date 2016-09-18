@@ -18,6 +18,7 @@ function memeMatch(tags, probability, memes) {
           memeSimilarity += (100 / Math.abs(probHash[tag.Class] - tag.prob));
         }
     });
+    console.log(memeSimilarity);
     topMemes.push({meme: meme, memeSimilarity : memeSimilarity});
   });
   topMemes.sort(function(a, b) {
