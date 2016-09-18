@@ -28,7 +28,15 @@ router.post('/api/captions', function(req, res, next) {
         var memes = memeMatch(req.body.result.tag.classes, req.body.result.tag.probs, memes);
 
         Sentencer.configure({
-            nounList: req.body.result.tag.classes
+            nounList: req.body.result.tag.classes,
+            actions: {
+                verb: function(){
+                    var verbs = [
+
+                    ];
+                    return verbs[Math.random() * (verbs.length)];
+                }
+            }
         });
 
         var captions = [];
@@ -39,6 +47,7 @@ router.post('/api/captions', function(req, res, next) {
                 captions.push({topText: topText, bottomText: bottomText});
             }
         }
+        console.log(captions);
         res.json(captions);
     });
 });
