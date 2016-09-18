@@ -10,8 +10,7 @@ function memeMatch(tags, probability, memes) {
   var checkValue = function(tag) {
     return tagHash[tag] === true;
   };
-  var relationVal = 0;
-  var similarMeme = {};
+  var topMemes = [];
   memes.forEach(function(meme) {
     var memeSimilarity = 0;
     meme.tags.forEach(function(tag) {
@@ -20,15 +19,18 @@ function memeMatch(tags, probability, memes) {
           memeSimilarity += (100 / Math.abs(probHash[tag.Class] - tag.prob));
         }
     });
-    if (memeSimilarity > relationVal) {
-      relationVal = memeSimilarity;
-      similarMeme = meme;
+    topMemes.push(memeSimilarity);
+  });
+  topMemes.sort(function(a, b) {
+    if (a > b) {
+      return 1;
+    } else if (a == b) {
+      return 0;
+    } else {
+      return -1;
     }
   });
-  if (Object.keys(similarMeme).length === 0 && similarMeme.constructor === Object) {
-    similarMeme = memes[Math.floor(Math.random() * meme.length)];
-  }
-  return similarMeme;
+  return topMemes;
 }
 
 module.exports = memeMatch;
