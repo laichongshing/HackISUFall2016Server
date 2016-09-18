@@ -38,25 +38,26 @@ router.post('/api/captions', function(req, res, next) {
             }
         });
 
-        var captions = [];
-        for(var i = 0; i < 3; i++) {
-            for(var j = 0; j < 5; j++) {
-                var topText = Sentencer.make(memes[i].topText);
-                var bottomText = Sentencer.make(memes[i].bottomText);
-                captions.push({topText: topText, bottomText: bottomText});
-            }
+      var captions = [];
+      for(var i = 0; i < 8; i++) {
+        var meme = memes[Math.floor(Math.random() * memes.length - 1)];
+        for(var j = 0; j < 3; j++) {
+          var topText = Sentencer.make(meme.topText);
+          var bottomText = Sentencer.make(meme.bottomText);
+          captions.push({topText: topText, bottomText: bottomText});
         }
-        res.json(captions);
+      }
+      res.json(captions);
     });
 });
 
 router.get('/api/dank/addMemes', function(req, res, next) {
-    var memes = [
-        {url : 'https://imgflip.com/s/meme/Aaaaand-Its-Gone.jpg', bottomText: "Aaaaaaand it's gone", topText: '{{adjective}} {{noun}}'},
-        {url : 'http://i1.kym-cdn.com/entries/icons/original/000/010/856/4fcdf2e118613355b500ba5d.jpg', bottomText: 'Who is a {{adjective}} {{noun}}', topText: 'Am I the only one'},
-        {url : 'https://imgflip.com/s/meme/Ancient-Aliens.jpg', bottomText: 'Aliens', topText: '{{nouns}} and {{nouns}}'},
-        {url : 'https://cdn.meme.am/images/5959710.jpg', bottomText: 'is {{noun}} a thing', topText: 'Why the fuck'},
-        {url : 'https://imgflip.com/s/meme/Back-In-My-Day.jpg', bottomText: 'a{{noun}} was a {{noun}}', topText: 'Back in my day'},
+  var memes = [
+    {url : 'https://imgflip.com/s/meme/Aaaaand-Its-Gone.jpg', bottomText: "Aaaaaaand it's gone", topText: '{{adjective}} {{noun}}'},
+    {url : 'http://i1.kym-cdn.com/entries/icons/original/000/010/856/4fcdf2e118613355b500ba5d.jpg', bottomText: 'Who is a {{adjective}} {{noun}}', topText: 'Am I the only one'},
+    {url : 'https://imgflip.com/s/meme/Ancient-Aliens.jpg', bottomText: 'Aliens', topText: '{{nouns}} and {{nouns}}'},
+    {url : 'https://cdn.meme.am/images/5959710.jpg', bottomText: 'is {{noun}} a thing', topText: 'Why the fuck'},
+    {url : 'https://imgflip.com/s/meme/Back-In-My-Day.jpg', bottomText: 'a{{noun}} was a {{noun}}', topText: 'Back in my day'},
         {url : 'https://imgflip.com/s/meme/Brace-Yourselves-X-is-Coming.jpg', bottomText: '{{adjective}} {{noun}} is coming', topText: 'Brace yourself'},
         {url : 'http://img.thedailywtf.com/images/remy/foreveralone.jpg', bottomText: 'Forever Alone', topText: '{{adjective}} {{noun}}'},
         {url : 'http://i1.kym-cdn.com/entries/icons/original/000/011/495/jonah.jpg', bottomText: 'Fuck me, right?', topText: '{{adjective}} {{noun}} and {{adjective}} {{noun}}'},
