@@ -6,7 +6,7 @@ var sentencer = require('sentencer');
 var Clarifai = require('clarifai');
 var Meme = mongoose.model('Meme');
 var Tag = mongoose.model('Tag');
-// var memeMatch = require('memes');
+var memeMatch = require('./libs/memeMatch');
 
 Clarifai.initialize({
     'clientId': '4WNkAKGSNyXZDCW0mYep4OUBKX1nKIEEvWSqP-4_',
@@ -16,7 +16,15 @@ Clarifai.initialize({
 
 //REST routes
 router.get('/api/captions', function(req, res, next) {
-    res.send(sentencer.make("This test contains {{ a_noun }} and {{ an_adjective }} {{ noun }} in it."));
+    // res.send(sentencer.make("This test contains {{ a_noun }} and {{ an_adjective }} {{ noun }} in it."));
+    var memes = Meme.find({}, function(err, memes) {
+        if (!err){
+            console.log(memes);
+        } else {console.log(err);}
+    });
+
+    var meme = memeMatch(req.results[0].result.tag.classes, req.results[0].result.tag.probs, memes);
+    res.json(meme);
 });
 
 // router.get('/api/dank/addMemes', function(req, res, next) {

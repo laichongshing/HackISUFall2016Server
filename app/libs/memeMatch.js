@@ -1,6 +1,5 @@
-function memeMatch(tags, probability) {
-//  db.getmemeinfo
-  var memes = [];
+function memeMatch(tags, probability, memes) {
+
   var tagHash = {};
   var probHash = {};
   tags.forEach(function(tag, index) {
@@ -18,7 +17,7 @@ function memeMatch(tags, probability) {
     meme.tags.forEach(function(tag) {
         if (checkValue(tag.tag)) {
           //
-          memeSimilarity += (100 / Math.abs(probHash[tag.tag] - tag.probability));
+          memeSimilarity += (100 / Math.abs(probHash[tag.Class] - tag.prob));
         }
     });
     if (memeSimilarity > relationVal) {
