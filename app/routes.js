@@ -40,7 +40,7 @@ router.post('/api/captions', function(req, res, next) {
         });
 
         var captions = [];
-        for(var i = 0; i < 3; i++) {
+        for(var i = 0; i < 5; i++) {
             for(var j = 0; j < 5; j++) {
                 var topText = Sentencer.make(memes[i].topText);
                 var bottomText = Sentencer.make(memes[i].bottomText);
