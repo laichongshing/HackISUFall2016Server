@@ -57,10 +57,11 @@ router.get('/api/dank/addMemes', function(req, res, next) {
                     tag.prob = res.results.result.tag.probs[j];
                     meme.tags.push(tag);
                 }
-                meme.save(function(err) {
+                meme.save(function(err, meme) {
                    if(err) {
                        return next(err);
                    }
+                   console.log(meme);
                 });
             },
             function error(err) {
