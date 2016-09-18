@@ -59,6 +59,7 @@ router.get('/api/dank/addMemes', function(req, res, next) {
                 }
                 meme.save(function(err, meme) {
                    if(err) {
+                       console.log(err);
                        return next(err);
                    }
                    console.log(meme);
