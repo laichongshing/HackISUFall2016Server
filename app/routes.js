@@ -9,8 +9,8 @@ var Tag = mongoose.model('Tag');
 // var memeMatch = require('memes');
 
 Clarifai.initialize({
-    'clientId': process.env.CLIENT_ID,
-    'clientSecret': process.env.CLIENT_SECRET
+    'clientId': '4WNkAKGSNyXZDCW0mYep4OUBKX1nKIEEvWSqP-4_',
+    'clientSecret': 'ROlSYiTX_cTqW-lW2x7Tq7_Fq1OB2QboUKjlLtE7'
 });
 
 
