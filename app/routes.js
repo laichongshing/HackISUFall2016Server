@@ -66,7 +66,6 @@ router.get('/api/dank/addMemes', function(req, res, next) {
                        console.log(err);
                        return next(err);
                    }
-                   console.log(newMeme);
                 });
             },
             function error(err) {
