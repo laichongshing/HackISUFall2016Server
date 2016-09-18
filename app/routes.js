@@ -6,7 +6,7 @@ var sentencer = require('sentencer');
 var Clarifai = require('clarifai');
 var Meme = mongoose.model('Meme');
 var Tag = mongoose.model('Tag');
-var memeMatch = require('memes');
+// var memeMatch = require('memes');
 
 //REST routes
 router.get('/api/captions', function(req, res, next) {
