@@ -11,13 +11,13 @@ function memeMatch(tags, probability, memes) {
   memes.forEach(function(meme) {
     var memeSimilarity = 0;
     meme.tags.forEach(function(tag, index) {
-      console.log(tag);
+      // console.log(tag);
         if (tagList.indexOf(tag) != -1) {
           // console.log(tag.Class);
           memeSimilarity += (100 / Math.abs(probList[index] - tag.prob));
         }
     });
-    console.log(memeSimilarity);
+    // console.log(memeSimilarity);
     topMemes.push({meme: meme, memeSimilarity : memeSimilarity});
   });
   topMemes.sort(function(a, b) {
