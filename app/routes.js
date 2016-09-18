@@ -27,15 +27,7 @@ router.post('/api/captions', function(req, res, next) {
         var memes = memeMatch(req.body.result.tag.classes, req.body.result.tag.probs, results);
 
         Sentencer.configure({
-            nounList: req.body.result.tag.classes,
-            actions: {
-                verb: function(){
-                    var verbs = [
-
-                    ];
-                    return verbs[Math.random() * (verbs.length)];
-                }
-            }
+            nounList: req.body.result.tag.classes
         });
 
         var captions = [];
