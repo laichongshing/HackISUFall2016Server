@@ -24,7 +24,6 @@ router.post('/api/captions', function(req, res, next) {
         if(err){
             console.log(err);
         }
-        console.log(results);
         var memes = memeMatch(req.body.result.tag.classes, req.body.result.tag.probs, results);
 
         Sentencer.configure({

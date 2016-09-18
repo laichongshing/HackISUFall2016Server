@@ -13,7 +13,7 @@ function memeMatch(tags, probability, memes) {
     meme.tags.forEach(function(tag, index) {
       // console.log(tag);
         if (tagList.indexOf(tag) != -1) {
-          // console.log(tag.Class);
+          console.log(tag.Class);
           memeSimilarity += (100 / Math.abs(probList[index] - tag.prob));
         }
     });
