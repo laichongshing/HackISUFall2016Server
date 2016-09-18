@@ -19,19 +19,26 @@ router.post('/api/captions', function(req, res, next) {
     if(!req.body) {
         return res.status(400).json({message: 'Please fill stuff'});
     }
-    console.log(req.body);
 
-    var memes = Meme.find({}, function(err, memes) {
+    Meme.find({}, function(err, memes) {
         if(err){
             console.log(err);
         }
-    });
 
-    var meme = memeMatch(req.body.result.tag.classes, req.body.result.tag.probs, memes);
-    res.json(meme);
+        var meme = memeMatch(req.body.result.tag.classes, req.body.result.tag.probs, memes);
 
-    Sentencer.configure({
-        nounList: []
+        Sentencer.configure({
+            nounList: req.body.result.tag.classes
+        });
+
+        var captions = [];
+        for(var i = 0; i < 5; i++) {
+            var topText = Sentencer.make(meme.topText);
+            var bottomText = Sentencer.make(meme.bottomText);
+            captions.push({topText: topText, bottomText: bottomText});
+        }
+
+        res.json(captions);
     });
 });
 
