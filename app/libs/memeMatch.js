@@ -8,8 +8,7 @@ function memeMatch(tags, probability, memes) {
   });
 
   var checkValue = function(tag, tagHash) {
-
-    return tagHash[tag] === true;
+    return tagHash.tag === true;
   };
   var topMemes = [];
   memes.forEach(function(meme) {
