@@ -26,7 +26,7 @@ function memeMatch(tags, probability, memes) {
     }
   });
   if (Object.keys(similarMeme).length === 0 && similarMeme.constructor === Object) {
-    similarMeme = memes[Math.floor(Math.random() * meme.length)];
+    similarMeme = memes[Math.floor(Math.random() * memes.length)];
   }
   return similarMeme;
 }
