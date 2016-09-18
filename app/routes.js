@@ -71,7 +71,6 @@ router.get('/api/dank/addMemes', function(req, res, next) {
         {url : 'https://pbs.twimg.com/profile_images/2615957657/image.jpg', bottomText: 'I once cried about {{adjective}} {{nouns}} for 30 mins', topText: "I'll have you know"},
         {url : 'http://img.pandawhale.com/80615-Robin-Williams-what-year-is-it-OWzf.jpeg', bottomText: 'What year is it?', topText: '{{adjective}} {{nouns}} and {{adjective}} {{nouns}}'},
         {url : 'http://vignette2.wikia.nocookie.net/mysims/images/2/2d/YUNO.png/revision/latest?cb=20111207025749', bottomText: 'make more memes', topText: 'Y u no?'},
-        // {url : 'https://blog.hipchat.com/wp-content/uploads/2015/02/Bill-Thatd-be-great-300x168.png', bottomText: "Yeah that'd be great", topText: ''},
         {url : 'http://orig05.deviantart.net/11d4/f/2012/220/5/e/xzibit_yo_dawg_render_by_kernelpanicx-d5aa710.png', bottomText: 'Yo dawg', topText: ''},
         {url : 'https://memecrunch.com/image/4f8c4bf718613332e000680b.jpg?w=400', bottomText: "You're gonna have a bad time ", topText: 'underestimate {{adjective}} {{nouns}}'},
         {url : 'http://i0.kym-cdn.com/photos/images/newsfeed/000/173/576/Wat8.jpg?1315930535', bottomText: 'Wat', topText: ''}
@@ -84,25 +83,18 @@ router.get('/api/dank/addMemes', function(req, res, next) {
                 newMeme.topText = meme.topText;
                 newMeme.bottomText = meme.bottomText;
                 for(var i = 0; i < res.results[0].result.tag.classes.length; i++) {
-                    var tag = new Tag({Class: res.results[0].result.tag.classes[i], prob:  res.results[0].result.tag.probs[i], meme: newMeme});
-                    tag.save(function(err) {
-                        if(err) {
-                            console.log(err);
-                            return next(err);
-                        }
-                    });
+                    var tag = new Tag({Class: res.results[0].result.tag.classes[i], prob:  res.results[0].result.tag.probs[i]});
+                    tag.markModified('tag');
                     newMeme.tags.push(tag);
                 }
                 newMeme.save(function(err) {
                    if(err) {
                        console.log(err);
-                       return next(err);
                    }
                 });
             },
             function error(err) {
                 console.log(err);
-                return next(err);
             }
         );
     });
