@@ -7,14 +7,13 @@ function memeMatch(tags, probability, memes) {
     probList.push(probability[index]);
   });
 
-  var checkValue = function(tag, tagHash) {
-    return tagHash.tag === true;
-  };
   var topMemes = [];
   memes.forEach(function(meme) {
     var memeSimilarity = 0;
     meme.tags.forEach(function(tag, index) {
+      console.log(tag.Class);
         if (tagList.indexOf(tag.Class) != -1) {
+          // console.log(tag.Class);
           memeSimilarity += (100 / Math.abs(probList[index] - tag.prob));
         }
     });
