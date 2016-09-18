@@ -4,6 +4,7 @@
   "descriptions": "Aye Aye Caption",
   "dependencies": {
     "body-parser": "~1.13.2",
+    "clarifai": "^1.2.1",
     "express": "^4.14.0",
     "method-override": "^2.3.6",
     "mongoose": "^4.5.2",
