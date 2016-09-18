@@ -12,6 +12,7 @@ function memeMatch(tags, probability, memes) {
   };
   var topMemes = [];
   memes.forEach(function(meme) {
+    console.log(meme);
     var memeSimilarity = 0;
     meme.tags.forEach(function(tag) {
       console.log('is the forEAch working?!?');
