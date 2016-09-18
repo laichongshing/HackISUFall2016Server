@@ -1,6 +1,3 @@
-/**
- * Created by Jeff on 9/17/2016.
- */
 function memeMatch(tags, probability) {
 //  db.getmemeinfo
   var memes = [];
