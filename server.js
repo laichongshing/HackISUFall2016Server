@@ -22,10 +22,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('X-HTTP-Method-Override'));
-// app.use(Clarifai.initialize({
-//     'clientId': process.env.CLIENT_ID,
-//     'clientSecret': process.env.CLIENT_SECRET
-// }));
+
+Clarifai.initialize({
+    'clientId': process.env.CLIENT_ID,
+    'clientSecret': process.env.CLIENT_SECRET
+});
 
 // routes
 var routes = require('./app/routes');
