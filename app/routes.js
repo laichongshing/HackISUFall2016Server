@@ -45,24 +45,22 @@ router.get('/api/dank/addMemes', function(req, res, next) {
         {url : 'http://i0.kym-cdn.com/photos/images/newsfeed/000/173/576/Wat8.jpg?1315930535', bottomText: 'Wat', topText: ''}
     ];
 
-    for(var i = 0; i < memes.length; i++) {
-        Clarifai.getTagsByUrl(memes[i].url).then(
+    memes.forEach(function(meme) {
+        Clarifai.getTagsByUrl(meme.url).then(
             function success(res) {
-                var meme = new Meme();
-                meme.topText = memes[i].topText;
-                meme.bottomText = memes[i].bottomText;
-                for(var j = 0; j < res.results.result.tag.classes.length; i++) {
-                    var tag = new Tag();
-                    tag.Class = res.results.result.tag.classes[j];
-                    tag.prob = res.results.result.tag.probs[j];
-                    meme.tags.push(tag);
+                var newMeme = new Meme();
+                newMeme.topText = meme.topText;
+                newMeme.bottomText = meme.bottomText;
+                for(var i = 0; i < res.results[0].result.tag.classes.length; i++) {
+                    var tag = new Tag({Class: res.results[0].result.tag.classes[i],prob:  res.results[0].result.tag.probs[i]});
+                    newMeme.tags.push(tag);
                 }
-                meme.save(function(err, meme) {
+                newMeme.save(function(err, newMeme) {
                    if(err) {
                        console.log(err);
                        return next(err);
                    }
-                   console.log(meme);
+                   console.log(newMeme);
                 });
             },
             function error(err) {
@@ -70,7 +68,7 @@ router.get('/api/dank/addMemes', function(req, res, next) {
                 return next(err);
             }
         );
-    }
+    });
 
     res.json('Success');
 });
