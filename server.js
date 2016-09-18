@@ -7,7 +7,6 @@ var Clarifai = require('clarifai');
 var app = express();
 
 require('./app/model/Meme');
-require('./app/model/Tag');
 
 // set our port
 var port = process.env.PORT || 8080;
