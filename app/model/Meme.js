@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var MemeSchema = new mongoose.Schema({
     topText: String,
     bottomText: String,
-    tags: [{type: mongoose.Schema.Types.ObjectId, ref: 'Tag' }]
+    tags: [{Class: String, prob: Number }]
 });
 
 mongoose.model('Meme', MemeSchema );
