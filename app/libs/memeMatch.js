@@ -11,8 +11,8 @@ function memeMatch(tags, probability, memes) {
   memes.forEach(function(meme) {
     var memeSimilarity = 0;
     meme.tags.forEach(function(tag, index) {
-      console.log(tag.Class);
-        if (tagList.indexOf(tag.Class) != -1) {
+      console.log(tag);
+        if (tagList.indexOf(tag) != -1) {
           // console.log(tag.Class);
           memeSimilarity += (100 / Math.abs(probList[index] - tag.prob));
         }
