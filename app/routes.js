@@ -53,6 +53,12 @@ router.get('/api/dank/addMemes', function(req, res, next) {
                 newMeme.bottomText = meme.bottomText;
                 for(var i = 0; i < res.results[0].result.tag.classes.length; i++) {
                     var tag = new Tag({Class: res.results[0].result.tag.classes[i],prob:  res.results[0].result.tag.probs[i]});
+                    tag.save(function(err) {
+                        if(err) {
+                            console.log(err);
+                            return next(err);
+                        }
+                    });
                     newMeme.tags.push(tag);
                 }
                 newMeme.save(function(err, newMeme) {
