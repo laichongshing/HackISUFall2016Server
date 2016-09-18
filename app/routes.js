@@ -25,19 +25,20 @@ router.post('/api/captions', function(req, res, next) {
             console.log(err);
         }
 
-        var meme = memeMatch(req.body.result.tag.classes, req.body.result.tag.probs, memes);
+        var memes = memeMatch(req.body.result.tag.classes, req.body.result.tag.probs, memes);
 
         Sentencer.configure({
             nounList: req.body.result.tag.classes
         });
 
         var captions = [];
-        for(var i = 0; i < 5; i++) {
-            var topText = Sentencer.make(meme.topText);
-            var bottomText = Sentencer.make(meme.bottomText);
-            captions.push({topText: topText, bottomText: bottomText});
+        for(var i = 0; i < 3; i++) {
+            for(var j = 0; i < 5; j++) {
+                var topText = Sentencer.make(memes[i].topText);
+                var bottomText = Sentencer.make(memes[i].bottomText);
+                captions.push({topText: topText, bottomText: bottomText});
+            }
         }
-
         res.json(captions);
     });
 });
