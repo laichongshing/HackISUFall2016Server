@@ -8,6 +8,12 @@ var Meme = mongoose.model('Meme');
 var Tag = mongoose.model('Tag');
 // var memeMatch = require('memes');
 
+Clarifai.initialize({
+    'clientId': process.env.CLIENT_ID,
+    'clientSecret': process.env.CLIENT_SECRET
+});
+
+
 //REST routes
 router.get('/api/captions', function(req, res, next) {
     res.send(sentencer.make("This test contains {{ a_noun }} and {{ an_adjective }} {{ noun }} in it."));
@@ -63,6 +69,8 @@ router.get('/api/dank/addMemes', function(req, res, next) {
             }
         );
     }
+
+    res.json('Success');
 });
 
 module.exports = router;
