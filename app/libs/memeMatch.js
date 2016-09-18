@@ -7,7 +7,8 @@ function memeMatch(tags, probability, memes) {
     probHash.tag = probability[index];
   });
 
-  var checkValue = function(tag) {
+  var checkValue = function(tag, tagHash) {
+
     return tagHash[tag] === true;
   };
   var topMemes = [];
@@ -15,8 +16,7 @@ function memeMatch(tags, probability, memes) {
     console.log(meme);
     var memeSimilarity = 0;
     meme.tags.forEach(function(tag) {
-      console.log('is the forEAch working?!?');
-        if (checkValue(tag.Class)) {
+        if (checkValue(tag.Class, tagHash)) {
           console.log('does this ever happen?');
           memeSimilarity += (100 / Math.abs(probHash[tag.Class] - tag.prob));
         }
