@@ -5,7 +5,6 @@ var mongoose = require('mongoose');
 var Sentencer = require('sentencer');
 var Clarifai = require('clarifai');
 var Meme = mongoose.model('Meme');
-var Tag = mongoose.model('Tag');
 var memeMatch = require('./libs/memeMatch');
 
 Clarifai.initialize({
