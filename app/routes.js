@@ -20,12 +20,12 @@ router.post('/api/captions', function(req, res, next) {
         return res.status(400).json({message: 'Please fill stuff'});
     }
 
-    Meme.find({}, function(err, memes) {
+    Meme.find({}, function(err, results) {
         if(err){
             console.log(err);
         }
-
-        var memes = memeMatch(req.body.result.tag.classes, req.body.result.tag.probs, memes);
+        console.log(results);
+        var memes = memeMatch(req.body.result.tag.classes, req.body.result.tag.probs, results);
 
         Sentencer.configure({
             nounList: req.body.result.tag.classes,
