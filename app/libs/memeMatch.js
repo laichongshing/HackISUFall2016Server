@@ -1,24 +1,23 @@
 function memeMatch(tags, probability, memes) {
 
-  var tagHash = {};
-  var probHash = {};
+  var tagList = [];
+  var probList = [];
   tags.forEach(function(tag, index) {
-    tagHash.tags = true;
-    probHash.tag = probability[index];
+    tagList.push(tag);
+    probList.push(probability[index]);
   });
 
-  var checkValue = function(tag) {
-    return tagHash[tag] === true;
-  };
   var topMemes = [];
   memes.forEach(function(meme) {
     var memeSimilarity = 0;
-    meme.tags.forEach(function(tag) {
-        if (checkValue(tag.Class)) {
-          console.log('does this ever happen?');
-          memeSimilarity += (100 / Math.abs(probHash[tag.Class] - tag.prob));
+    meme.tags.forEach(function(tag, index) {
+      console.log(tag);
+        if (tagList.indexOf(tag) != -1) {
+          // console.log(tag.Class);
+          memeSimilarity += (100 / Math.abs(probList[index] - tag.prob));
         }
     });
+    console.log(memeSimilarity);
     topMemes.push({meme: meme, memeSimilarity : memeSimilarity});
   });
   topMemes.sort(function(a, b) {
