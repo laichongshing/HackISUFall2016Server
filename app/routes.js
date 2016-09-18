@@ -47,7 +47,6 @@ router.post('/api/captions', function(req, res, next) {
                 captions.push({topText: topText, bottomText: bottomText});
             }
         }
-        console.log(captions);
         res.json(captions);
     });
 });
