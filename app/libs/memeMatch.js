@@ -3,7 +3,7 @@ function memeMatch(tags, probability, memes) {
   var tagHash = {};
   var probHash = {};
   tags.forEach(function(tag, index) {
-    tagHash.tags = true;
+    tagHash.tag = true;
     probHash.tag = probability[index];
   });
 
