@@ -84,7 +84,7 @@ router.get('/api/dank/addMemes', function(req, res, next) {
                 newMeme.topText = meme.topText;
                 newMeme.bottomText = meme.bottomText;
                 for(var i = 0; i < res.results[0].result.tag.classes.length; i++) {
-                    var tag = new Tag({Class: res.results[0].result.tag.classes[i],prob:  res.results[0].result.tag.probs[i]});
+                    var tag = new Tag({Class: res.results[0].result.tag.classes[i], prob:  res.results[0].result.tag.probs[i]});
                     tag.save(function(err) {
                         if(err) {
                             console.log(err);
@@ -93,7 +93,7 @@ router.get('/api/dank/addMemes', function(req, res, next) {
                     });
                     newMeme.tags.push(tag);
                 }
-                newMeme.save(function(err, newMeme) {
+                newMeme.save(function(err) {
                    if(err) {
                        console.log(err);
                        return next(err);
@@ -108,6 +108,15 @@ router.get('/api/dank/addMemes', function(req, res, next) {
     });
 
     res.json('Success');
+});
+
+router.get('/api/test', function(req, res, next) {
+    Meme.find({}, function (err, results) {
+        if (err) {
+            console.log(err);
+        }
+        res.json(results);
+    });
 });
 
 module.exports = router;
