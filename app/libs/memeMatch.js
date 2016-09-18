@@ -19,18 +19,20 @@ function memeMatch(tags, probability, memes) {
           memeSimilarity += (100 / Math.abs(probHash[tag.Class] - tag.prob));
         }
     });
-    topMemes.push(memeSimilarity);
+    topMemes.push({meme: meme, memeSimilarity : memeSimilarity});
   });
   topMemes.sort(function(a, b) {
-    if (a > b) {
+    if (a.memeSimilarity > b.memeSimilarity) {
       return 1;
-    } else if (a == b) {
+    } else if (a.memeSimilarity == b.memeSimilarity) {
       return 0;
     } else {
       return -1;
     }
   });
-  return topMemes;
+  return topMemes.map(function(meme) {
+      return meme.meme;
+  });
 }
 
 module.exports = memeMatch;
