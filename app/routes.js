@@ -16,17 +16,18 @@ Clarifai.initialize({
 //REST routes
 router.get('/api/captions', function(req, res, next) {
     // res.send(sentencer.make("This test contains {{ a_noun }} and {{ an_adjective }} {{ noun }} in it."));
-    if(!req) {
+    if(!req.body) {
         return res.status(400).json({message: 'Please fill stuff'});
     }
+    console.log(req.body);
 
     var memes = Meme.find({}, function(err, memes) {
-        if (!err){
-            console.log(memes);
-        } else {console.log(err);}
+        if(err){
+            console.log(err);
+        }
     });
 
-    var meme = memeMatch(req.tag.classes, tag.probs, memes);
+    var meme = memeMatch(req.body.result.tag.classes, req.body.result.tag.probs, memes);
     res.json(meme);
 
     Sentencer.configure({
