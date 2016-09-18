@@ -30,7 +30,7 @@ router.post('/api/captions', function(req, res, next) {
         });
       var captions = [];
       for(var i = 0; i < 8; i++) {
-        var meme = memes[Math.floor(Math.random() * memes.length - 1)];
+        var meme = memes[Math.floor(Math.random() * (memes.length - 1))];
         for(var j = 0; j < 3; j++) {
           var topText = Sentencer.make(meme.topText);
           var bottomText = Sentencer.make(meme.bottomText);
