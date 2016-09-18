@@ -14,7 +14,7 @@ Clarifai.initialize({
 });
 
 //REST routes
-router.get('/api/captions', function(req, res, next) {
+router.post('/api/captions', function(req, res, next) {
     // res.send(sentencer.make("This test contains {{ a_noun }} and {{ an_adjective }} {{ noun }} in it."));
     if(!req.body) {
         return res.status(400).json({message: 'Please fill stuff'});
